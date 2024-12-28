@@ -17,6 +17,7 @@
 \usepackage{times}
 \usepackage{mathptmx}
 \usepackage{graphicx}
+\usepackage{mathrsfs}
 \usepackage{tikz}
 \usepackage{mathtools}
 \newcommand{\divisible}{\mathop{\raisebox{-2pt}{\vdots}}}
@@ -42,10 +43,9 @@
 \newcommand{\bb}[1]{\mathbb{#1}}
 \newcommand{\dt}{\frac{d}{dt}}
 \newcommand{\fracp}[2]{\frac{\pp #1}{\pp #2}}
-
+\newcommand{\mr}{\mathscr}
 \newcommand{\pf}{\textit{Доказательство}\\}
 \newcommand{\pfe}{\textit{Доказательство окончено}\\}
-
 \newcommand{\SL}{\sum\limits}
 \newcommand{\IL}{\int\limits}
 \newcommand{\os}{\left(}
@@ -166,102 +166,138 @@
 \begin{mybox}{\hypertarget{bil1_1}{Билет 1.1}}
 \end{mybox}
 \newpage
-\begin{mybox2}{\hypertarget{bil1_2}{Билет 1.2}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil1_2}{Билет 1.2}}
+\end{mybox}
 \newpage
 \begin{mybox}{\hypertarget{bil1_3}{Билет 1.3}}
 \end{mybox}
 \newpage
-\begin{mybox2}{\hypertarget{bil1_4}{Билет 1.4}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil1_4}{Билет 1.4}}
+\end{mybox}
 
 \newpage
 \begin{mybox}{\hypertarget{bil2_1}{Билет 2.1}}
+\centering{ Основные гипотезы механики сплошной среды: гипотеза сплошности (гладкости движения), гипотеза распределенности массы, гипотезы распределенности массовых и поверхностных сил; контактный характер поверхностных сил. Законы движения Коши—Эйлера в механике сплошной среды.
+}
+\begin{enumerate}
+    \item Гипотеза сплошности\\
+    В любой системе отсчета $\Phi$, в любом движении $\bar{\chi}$ для любого тела $\mathscr{B}$ любые две актуальных конфигурации ($t$-конфигурация и $t'$-конфигурация) $\bar{\chi}(\mathscr{B}, t)$ и  $\bar{\chi}(\mathscr{B}, t')$ связаны отображением, диффеоморфным по отношению к материальным внутренностям этих конфигураций, а именно: пусть $\bar{x} = \bar{\chi}(b, t),\;\bar{x}' = \bar{\chi}(b, t'), \;\Omega_t = \bar{\chi}(\mathscr{B}, t), \;\Omega_{t'} = \bar{\chi}(\mathscr{B}, t') $. Тогда $\bar{x}' = \bar{\chi}(b, t') = \bar{\chi}(\bar{\chi}^{-1}(\bar{x}, t), t') = \bar{\varphi}_{t,t'}(\bar{x})\;\;\;\forall t, t'$ отображает $\Omega_t \to \Omega_{t'}$ с диффеоморфным сужением $\bar{\varphi}_{t,t'}: \bar{\chi}(\mathscr{B}, t) \to \bar{\chi}(\mathscr{B}, t')$.\\
+    Замечание. Диффеоморфизм потребуется первого и второго порядков.\\
+    Вывод: Таким образом, движение в МСС есть гладкая по времени смена актуальных конфигураций тел, диффеоморфная по отношению к внутренностям тел.
+    \item Гипотеза неразрывности (распределенности массы)\\
+    Масса является абсолютно непрерывной мерой по отношению к мере объема объекта в какой-либо одной (а в силу гипотезы сплошности и в любой другой) актуальной конфигурации тела.\\
+    Теорема Родона-Никодима:\\
+    Пусть $(X, F, \mu)$ -- пространство с мерой и мера $\mu\;\sigma$-конечна. Тогда если мера $\nu: F\to R$ абсолютно непрерывна относительно $\mu\;(\nu << \mu)$, то $\exists$ измеримая функция $f:X\to R: \nu(A) = \int\limits_A f(x)\mu(dx)\;\; \forall A\in F$ (интеграл Лебега).\\
+    По теореме Родона-Никодима существует плотность $\rho:$\\
+    $M(\mathscr{B}) = \int_{\bar{\chi}(\mathscr{B},t)} \rho(\bar{x}, t) dV = \int_{\bar{\chi}(\mathscr{B},t')} \rho(\bar{x}, t') dV$\\
+    $dM = \rho(\bar{x}, t)dV_t = \rho(\bar{x}, t')dV_{t'}\Rightarrow \rho_tdV_t = \rho_{t'}dV_{t'}$\\
+    $V(\bar{\chi}(\mathscr{B}, t)) = \int_{\bar{\chi}(\mathscr{B}, t)} dV,\; V(\bar{\chi}(\mathscr{B}, t')) = \int_{\bar{\chi}(\mathscr{B}, t')} dV = \int_{\bar{\chi}(\mathscr{B}, t)} J_{t, t'} dV $, где $J$ -- якобиан смены конфигурации.\\
+    Следствие. $dV_{t'} = J_{t, t'}dV_t$, и потому $\rho_t dV_t = \rho_{t'} J_{t, t'} dV_{t'}\Rightarrow \rho(\bar{x}_t, t) = \rho(\bar{x}_{t'}, t') J_{t, t'}$ -- уравнение неразрывности в форме Лагранжа.
+    \item Гипотеза распределенности сил.\\
+    Система сил в классической МСС $\vec{f}$ есть сумма двух систем сил:
+    \begin{itemize}
+        \item Массовых сил ($\vec{f}_B$)
+        \item Контактных (поверхтностных) сил ($\vec{f}_C$)
+    \end{itemize}
+    $\vec{f} = \vec{f}_B + \vec{f}_C$\\
+
+
+    \begin{mybox2}{Определение}
+    Массовая сила $\vec{f}_B(e, \mathscr{B}, t)$  воздействия любого фиксированного тела $\mathscr{B}$ на произвольное отделенное от него тело $e$ (в любой момент времени $t$) -- есть векторная мера $f_{B, \mathscr{B}, t}(\cdot)$, абсолютно непрерывная относительно меры массы $M(\cdot)$
+    \end{mybox2}
+    \begin{mybox2}{Определение}
+    Компактная (поверхтностная) сила $\vec{f}_C (e, \mr{B}, t)$ воздействия для любого фиксированного тела $\mr{B}$ на произвольное отделенное от него тело $e$ (для любого момента $t$):
+    \begin{enumerate}
+        \item Зависит только от контактной поверхности актуальной конфигурации этих тел
+        \item есть векторная мера $\vec{f}_{C, \mr{B}, t}(\cdot)$ на подмножествах контактной поверхности, абсолютно непрерывная относительно меры площади $S_{t}(\Delta \Gamma_{cont}(t))$ подмножеств $\Delta \Gamma_{cont}(t)$ общей контактной части границ ($\Delta \Gamma_{cont}(t) = \partial \bar{\chi}(\mr{B}, t) \cap \partial \bar{\chi}(e, t) $)
+    \end{enumerate}
+    \end{mybox2}
+\end{enumerate}
 \end{mybox}
 \newpage
-\begin{mybox2}{\hypertarget{bil2_2}{Билет 2.2}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil2_2}{Билет 2.2}}
+\end{mybox}
 \newpage
 \begin{mybox}{\hypertarget{bil2_3}{Билет 2.3}}
 \end{mybox}
 \newpage
-\begin{mybox2}{\hypertarget{bil2_4}{Билет 2.4}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil2_4}{Билет 2.4}}
+\end{mybox}
 
 \newpage
 \begin{mybox}{\hypertarget{bil3_1}{Билет 3.1}}
 \end{mybox}
 \newpage
-\begin{mybox2}{\hypertarget{bil3_2}{Билет 3.2}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil3_2}{Билет 3.2}}
+\end{mybox}
 \newpage
 \begin{mybox}{\hypertarget{bil3_3}{Билет 3.3}}
 \end{mybox}
 \newpage
-\begin{mybox2}{\hypertarget{bil3_4}{Билет 3.4}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil3_4}{Билет 3.4}}
+\end{mybox}
 \newpage
 \begin{mybox}{\hypertarget{bil3_5}{Билет 3.5}}
 \end{mybox}
 \newpage
-\begin{mybox2}{\hypertarget{bil3_6}{Билет 3.6}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil3_6}{Билет 3.6}}
+\end{mybox}
 \newpage
 \begin{mybox}{\hypertarget{bil3_7}{Билет 3.7}}
 \end{mybox}
 \newpage
-\begin{mybox2}{\hypertarget{bil3_8}{Билет 3.8}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil3_8}{Билет 3.8}}
+\end{mybox}
 \newpage
 \begin{mybox}{\hypertarget{bil3_9}{Билет 3.9}}
 \end{mybox}
 \newpage
-\begin{mybox2}{\hypertarget{bil4_1}{Билет 4.1}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil4_1}{Билет 4.1}}
+\end{mybox}
 \newpage
 \begin{mybox}{\hypertarget{bil4_2}{Билет 4.2}}
 \end{mybox}
 \newpage
-\begin{mybox2}{\hypertarget{bil4_3}{Билет 4.3}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil4_3}{Билет 4.3}}
+\end{mybox}
 \newpage
 \begin{mybox}{\hypertarget{bil4_4}{Билет 4.4}}
 \end{mybox}
 \newpage
-\begin{mybox2}{\hypertarget{bil4_5}{Билет 4.5}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil4_5}{Билет 4.5}}
+\end{mybox}
 \newpage
 \begin{mybox}{\hypertarget{bil4_6}{Билет 4.6}}
 \end{mybox}
 
 
 \newpage
-\begin{mybox2}{\hypertarget{bil5_1}{Билет 5.1}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil5_1}{Билет 5.1}}
+\end{mybox}
 \newpage
 \begin{mybox}{\hypertarget{bil5_2}{Билет 5.2}}
 \end{mybox}
 \newpage
-\begin{mybox2}{\hypertarget{bil5_3}{Билет 5.3}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil5_3}{Билет 5.3}}
+\end{mybox}
 \newpage
 \begin{mybox}{\hypertarget{bil5_4}{Билет 5.4}}
 \end{mybox}
 
 
 \newpage
-\begin{mybox2}{\hypertarget{bil6_1}{Билет 6.1}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil6_1}{Билет 6.1}}
+\end{mybox}
 \newpage
 \begin{mybox}{\hypertarget{bil6_2}{Билет 6.2}}
 \end{mybox}
 \newpage
-\begin{mybox2}{\hypertarget{bil6_3}{Билет 6.3}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil6_3}{Билет 6.3}}
+\end{mybox}
 \newpage
 \begin{mybox}{\hypertarget{bil6_4}{Билет 6.4}}
 \end{mybox}
 \newpage
-\begin{mybox2}{\hypertarget{bil6_5}{Билет 6.5}}
-\end{mybox2}
+\begin{mybox}{\hypertarget{bil6_5}{Билет 6.5}}
+\end{mybox}
 \end{document}
